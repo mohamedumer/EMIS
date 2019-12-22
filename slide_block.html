@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .imm {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      #container{
+        height:40vw; overflow: hidden;position:relative;
+      }
+      .common {
+        transition: 0.2s;
+        border: none;
+        border-radius: 50%;
+        padding: 8px;
+        margin: 2px;
+        opacity: 0.5;
+        outline: none;
+        cursor: pointer;
+      }
+      .common:hover {
+        border-radius: 1px;
+      }
+      .prev,
+      .next {
+        position: absolute;
+        color: red;
+        background-color: transparent;
+        border: none;
+        font-weight: bold;
+        font-size: 40px;
+        transition: 0.5s ease;
+        cursor: pointer;
+        outline: none;
+      }
+      .arrow {
+        position: absolute;
+        width: 93%;
+        top: 40%;
+        left: 3%;
+      }
+      #button{
+        position: absolute;bottom:20px;left:43vw;
+      }
+      .prev {
+        left: 0;
+        animation: 1s move infinite;
+      }
+      .next {
+        right: 0;
+        animation: 1s move infinite;
+      }
+      .prev:hover,
+      .next:hover {
+        background-color: grey;
+        opacity:.2;
+        border-radius: 5px;
+        animation-timing-function: step-end;
+      }
+      @keyframes move {
+        0% {
+          opacity: 1;
+        }
+        5% {
+          opacity: 0.9;
+        }
+        100% {
+          opacity: 0.2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <img class="imm" src="1.jpg" />
+      <img class="imm" src="2.jpg" />
+      <img class="imm" src="3.jpeg" />
+      <img class="imm" src="4.jpeg" />
+      <div class="arrow">
+        <button type="button" class="prev" onclick="next(-1)">&#10094;</button>
+        <button type="button" class="next" onclick="next(1)">&#10095;</button>
+      </div>
+      <div id="button">
+        <button class="common" onclick="cli(0)" type="button"></button>
+        <button class="common" onclick="cli(1)" type="button"></button>
+        <button class="common" onclick="cli(2)" type="button"></button>
+        <button class="common" onclick="cli(3)" type="button"></button>
+      </div>
+    </div>
+    
+   
+  </body>
+  <script>
+    var b = 0;
+    var array = document.getElementsByClassName("imm");
+    var btn = document.getElementsByClassName("common");
+    var len = array.length;
+    var gf = setInterval(inter, 2000);
+    function inter() {
+      if (b < len) {
+        for (i = 0; i < len; i++) {
+          if (i == b) {
+            array[i].style.display = "block";
+            btn[i].style.backgroundColor = "black";
+            
+          } else {
+            array[i].style.display = "none";
+            btn[i].style.backgroundColor = "white";
+          }
+        }
+        b++;
+      }
+      if (b == len) {
+        b = 0;
+      }
+    }
+    function next(y) {
+     
+      if (y == -1) {
+        b--;
+      }
+      if (b == len) {
+        b = 0;
+      } else if (b < 0 && y == -1) {
+        b = len - 1;
+      }
+      if (b < len) {
+        for (i = 0; i < len; i++) {
+          if (i == b) {
+            array[i].style.display = "block";
+            btn[i].style.backgroundColor = "black";
+           
+          } else {
+            array[i].style.display = "none";
+            btn[i].style.backgroundColor = "white";
+          }
+        }
+        if (y == 1) {
+          b++;
+        }
+      }
+    }
+    var elem = document.getElementsByClassName("next")[0];
+    elem.addEventListener("mouseleave", function(event) {
+      gf = setInterval(inter, 2000);
+    });
+    elem.addEventListener("mouseenter", function(event) {
+      clearInterval(gf);
+    });
+    var ele = document.getElementsByClassName("prev")[0];
+    ele.addEventListener("mouseleave", function(event) {
+      gf = setInterval(inter, 2000);
+    });
+    ele.addEventListener("mouseenter", function(event) {
+      clearInterval(gf);
+    });
+    var gbutton = document.getElementById("button");
+    gbutton.addEventListener("mouseleave", function(event) {
+      gf = setInterval(inter, 2000);
+    });
+    gbutton.addEventListener("mouseenter", function(event) {
+      clearInterval(gf);
+    });
+    function cli(h) {
+      for (i = 0; i < len; i++) {
+        if (i == h) {
+          array[i].style.display = "block";
+          btn[i].style.backgroundColor = "black";
+        } else {
+          array[i].style.display = "none";
+          btn[i].style.backgroundColor = "white";
+        }
+      }
+      b = h;
+    }
+  </script>
+</html>

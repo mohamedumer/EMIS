@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0 auto;
+      }
+      .slider {
+        position: relative;
+        overflow: hidden;
+        height: 600px;
+        width: 95%;
+      }
+
+      .slide {
+        float: left;
+
+        width: 20%;
+      }
+      img {
+        width: 100%;
+       
+      }
+      #fig {
+        position: absolute;
+        width: 500%;
+       
+
+        animation: 20s loop infinite;
+      }
+      @keyframes loop {
+        0% {
+          left: 0%;
+        }
+        16% {
+          left: -100%;
+        }
+        29% {
+          left: -100%;
+        }
+        45% {
+          left: -200%;
+        }
+        58% {
+          left: -200%;
+        }
+        75% {
+          left: -300%;
+        }
+        85% {
+          left: -300%;
+        }
+        97% {
+          left: -400%;
+        }
+        100% {
+          left: -400%;
+        }
+      }
+      .common {
+        transition: 0.2s;
+        border: none;
+        border-radius: 50%;
+        padding: 8px;
+        margin: 2px;
+      }
+      .common:hover {
+        background-color: black;
+      }
+      .prev,
+      .next {
+        position: absolute;
+        color: red;
+        background-color: transparent;
+        border: none;
+        font-weight: bold;
+        font-size: 60px;
+        transition: 0.5s ease;
+      }
+      .arrow {
+        position: absolute;
+        width: 90%;
+        top: 45%;
+        left: 5%;
+      }
+      .prev {
+        left: 0;
+      }
+      .next {
+        right: 0;
+      }
+
+      .prev:hover,
+      .next:hover {
+        background-color: grey;
+        border-radius: 5px;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <div class="slider">
+      <figure id="fig">
+        <div class="slide">
+          <img src="6.jpeg" />
+        </div>
+        <div class="slide">
+          <img src="3.jpeg" />
+        </div>
+        <div class="slide">
+          <img src="4.jpeg" />
+        </div>
+        <div class="slide">
+          <img src="5.jpeg" />
+        </div>
+
+        <div class="slide">
+          <img src="6.jpeg" />
+        </div>
+      </figure>
+      <div class="arrow">
+        <button type="button"  class="prev" onclick="prev()" >&#10094;</button>
+        <button type="button" class="next"onclick="next()" >&#10095;</button>
+      </div>
+      <div id="button" style="position: absolute;top:40vw;left:43vw">
+        <button class="common" id="a" type="button"></button>
+        <button class="common" id="b" type="button"></button>
+        <button class="common" id="c" type="button"></button>
+        <button class="common" id="d" type="button"></button>
+      </div>
+    </div>
+
+    <script>
+      var count=1;
+    function next(){
+var cat= document.getElementById("fig");
+cat.style.cssText="animation-play-state:paused";
+for(i=0;i<cat.length;i++){
+  cat[i].style.left="-200%";
+}
+
+    }
+    
+    </script>
+  </body>
+</html>
